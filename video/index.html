@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Video - My Website</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #fff;
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+  p {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    max-width: 600px;
+    text-align: center;
+  }
+  .button-container {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 900px;
+    width: 100%;
+  }
+  button {
+    cursor: pointer;
+    background: #f7cf58; /* folder yellow */
+    border: none;
+    border-radius: 4px 4px 8px 8px;
+    padding: 12px 22px;
+    box-shadow:
+      inset 0 3px 0 0 #ffef9f,
+      0 3px 6px -1px rgba(0,0,0,0.4);
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #574c00;
+    text-align: left;
+    position: relative;
+    min-width: 180px;
+    display: flex;
+    align-items: center;
+    user-select: none;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
+    flex-shrink: 0;
+  }
+  button:hover {
+    background: #ffd54f;
+    box-shadow:
+      inset 0 3px 0 0 #ffea85,
+      0 5px 12px rgba(0,0,0,0.5);
+    transform: translateY(-2px);
+    color: #453b00;
+  }
+  button:active {
+    transform: translateY(0);
+    box-shadow:
+      inset 0 3px 0 0 #dab64b,
+      0 3px 6px -1px rgba(0,0,0,0.4);
+  }
+  button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 22px;
+    background: #fbcf3a;
+    border-radius: 6px 6px 0 8px;
+    box-shadow: inset 0 3px 0 0 #fddf6a;
+    z-index: 10;
+  }
+  .folder-icon {
+    font-size: 1.8rem;
+    margin-right: 10px;
+    user-select: none;
+    flex-shrink: 0;
+  }
+</style>
+</head>
+<body>
+  <h1>Video Folder</h1>
+  <p>Welcome to the Video section. Select a folder below to explore the content.</p>
+  <div class="button-container">
+    <button id="btn-storie"><span class="folder-icon">📁</span>Storie tecnologiche</button>
+    <button id="btn-animated"><span class="folder-icon">📁</span>Animated Series (Coming Soon)</button>
+    <button id="btn-movie"><span class="folder-icon">📁</span>Movie (Coming Soon)</button>
+    <button id="btn-back"><span class="folder-icon">📁</span>Back to Home</button>
+  </div>
+<script>
+  document.getElementById('btn-storie').addEventListener('click', () => {
+    window.location.href = 'storie-tecnologiche/index.html';
+  });
+  document.getElementById('btn-animated').addEventListener('click', () => {
+    window.location.href = 'animated-series/index.html';
+  });
+  document.getElementById('btn-movie').addEventListener('click', () => {
+    window.location.href = 'movie/index.html';
+  });
+  document.getElementById('btn-back').addEventListener('click', () => {
+    window.location.href = '/index.html';
+  });
+</script>
+</body>
+</html>
+
