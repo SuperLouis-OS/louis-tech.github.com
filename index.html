@@ -211,16 +211,9 @@
   <p>Click the “folder” buttons below to navigate to different sections.</p>
 
   <div class="button-container">
-    <button id="folder-louis"><span class="folder-icon">📁</span>Louis IDEA!</button>
-    <button id="folder-prodotti"><span class="folder-icon">📁</span>Prodotti</button>
-    <button id="folder-corso"><span class="folder-icon">📁</span>Corso Tecnologico</button>
-    <button id="folder-social"><span class="folder-icon">📁</span>Seguimi sui social</button>
     <button id="messages"><span class="message-icon">✉️</span>Messages</button>
-    <button id="folder-info"><span class="folder-icon">📁</span>Info</button>
-    <button id="folder-supporto"><span class="folder-icon">📁</span>Supporto</button>
-    <button id="folder-lista"><span class="folder-icon">📁</span>Lista d'attesa</button>
-    <button id="folder-discord"><span class="folder-icon">📁</span>Discord server<span class="discord-icon">� discord</span></button>
-    <button id="folder-video"><span class="folder-icon">📁</span>Video</button>
+    <button id="folder-info"><span class="folder-icon">📁</span>Info</button
+    <button id="folder-supporto"><span class="folder-icon">📁</span>I nostri servizi</button
   </div>
 
   <div id="cookie-banner" style="display:none;">
@@ -230,18 +223,6 @@
 
   <script>
     // Navigation handlers
-    document.getElementById('folder-louis').addEventListener('click', () => {
-      window.location.href = '/louis-idea/index.html';
-    });
-    document.getElementById('folder-prodotti').addEventListener('click', () => {
-      window.location.href = '/prodotti/index.html';
-    });
-    document.getElementById('folder-corso').addEventListener('click', () => {
-      window.location.href = '/corso-tecnologico/index.html';
-    });
-    document.getElementById('folder-social').addEventListener('click', () => {
-      window.location.href = '/social/index.html';
-    });
     document.getElementById('messages').addEventListener('click', () => {
       window.location.href = '/messages/index.html';
     });
@@ -250,15 +231,6 @@
     });
     document.getElementById('folder-supporto').addEventListener('click', () => {
       window.location.href = '/supporto/index.html';
-    });
-    document.getElementById('folder-lista').addEventListener('click', () => {
-      window.location.href = '/lista-dattesa/index.html';
-    });
-    document.getElementById('folder-discord').addEventListener('click', () => {
-      window.location.href = 'https://discord.gg/YOUR_SERVER_INVITE'; // Replace with actual Discord invite URL
-    });
-    document.getElementById('folder-video').addEventListener('click', () => {
-      window.location.href = '/video/index.html';
     });
 
     // Cookie consent logic
