@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Website - File Explorer Style</title>
+  <style>
+    /* Modern clean styling */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      user-select: none;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    p {
+      font-size: 1.25rem;
+      margin-bottom: 3rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      max-width: 600px;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    button {
+      cursor: pointer;
+      background: #f7cf58; /* folder yellow */
+      border: none;
+      border-radius: 4px 4px 8px 8px;
+      padding: 10px 18px 18px 18px;
+      box-shadow:
+        inset 0 3px 0 0 #ffef9f,
+        0 3px 6px -1px rgba(0,0,0,0.4);
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #574c00;
+      text-align: left;
+      position: relative;
+      min-width: 180px;
+      display: flex;
+      align-items: center;
+      user-select: none;
+      transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    }
+
+    button:focus {
+      outline: 3px solid #ffdc42;
+      outline-offset: 3px;
+    }
+
+    button:hover:not(:disabled) {
+      background: #ffd54f;
+      box-shadow:
+        inset 0 3px 0 0 #ffea85,
+        0 5px 12px rgba(0,0,0,0.5);
+      transform: translateY(-2px);
+      color: #453b00;
+    }
+
+    button:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow:
+        inset 0 3px 0 0 #dab64b,
+        0 3px 6px -1px rgba(0,0,0,0.4);
+      color: #453b00;
+    }
+
+    button:disabled {
+      cursor: default;
+      background: #dbd7c9;
+      box-shadow: inset 0 3px 0 0 #f0efe6;
+      color: #85837b;
+      font-weight: normal;
+    }
+
+    /* Folder tab shape on top left */
+    button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 22px;
+      background: #fbcf3a;
+      border-radius: 6px 6px 0 8px;
+      box-shadow: inset 0 3px 0 0 #fddf6a;
+      z-index: 10;
+    }
+
+    button:hover::before:not(:disabled) {
+      background: #ffd54f;
+      box-shadow: inset 0 3px 0 0 #ffea85;
+    }
+
+    button:active::before:not(:disabled) {
+      background: #dab64b;
+      box-shadow: inset 0 3px 0 0 #c0a631;
+    }
+
+    /* Folder emoji icon next to text */
+    .folder-icon {
+      font-size: 1.8rem;
+      margin-right: 10px;
+      user-select: none;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 1.6em;
+      width: 1.6em;
+    }
+
+    /* Discord icon style */
+    .discord-icon {
+      font-size: 1.4rem;
+      margin-left: 6px;
+      user-select: none;
+      color: #7289da;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 1.4em;
+      width: 1.4em;
+    }
+
+    /* Message icon style */
+    .message-icon {
+      font-size: 1.6rem;
+      margin-right: 10px;
+      user-select: none;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 1.6em;
+      width: 1.6em;
+      color: #2d89ef;
+    }
+
+    /* Cookie consent banner */
+    #cookie-banner {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.85);
+      color: #fff;
+      padding: 16px 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+      font-size: 1rem;
+      max-width: 90vw;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      z-index: 1000;
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+    }
+
+    #cookie-banner button {
+      background: #5a4ade;
+      border-radius: 6px;
+      padding: 10px 22px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: white;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 4px 12px rgba(90, 74, 222, 0.7);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      min-width: 100px;
+    }
+
+    #cookie-banner button:hover {
+      background: #7c68ff;
+      transform: translateY(-3px);
+    }
+
+    #cookie-banner button:active {
+      transform: translateY(0);
+      background: #614bdb;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Welcome to My Website</h1>
+  <p>Click the “folder” buttons below to navigate to different sections.</p>
+
+  <div class="button-container">
+    <button id="folder-louis"><span class="folder-icon">📁</span>Louis IDEA!</button>
+    <button id="folder-prodotti"><span class="folder-icon">📁</span>Prodotti</button>
+    <button id="folder-corso"><span class="folder-icon">📁</span>Corso Tecnologico</button>
+    <button id="folder-social"><span class="folder-icon">📁</span>Seguimi sui social</button>
+    <button id="messages"><span class="message-icon">✉️</span>Messages</button>
+    <button id="folder-info"><span class="folder-icon">📁</span>Info</button>
+    <button id="folder-supporto"><span class="folder-icon">📁</span>Supporto</button>
+    <button id="folder-lista"><span class="folder-icon">📁</span>Lista d'attesa</button>
+    <button id="folder-discord"><span class="folder-icon">📁</span>Discord server<span class="discord-icon">� discord</span></button>
+    <button id="folder-video"><span class="folder-icon">📁</span>Video</button>
+  </div>
+
+  <div id="cookie-banner" style="display:none;">
+    <span>This website uses cookies and third-party technologies to enhance your experience.</span>
+    <button id="accept-cookies">Accept</button>
+  </div>
+
+  <script>
+    // Navigation handlers
+    document.getElementById('folder-louis').addEventListener('click', () => {
+      window.location.href = '/louis-idea/index.html';
+    });
+    document.getElementById('folder-prodotti').addEventListener('click', () => {
+      window.location.href = '/prodotti/index.html';
+    });
+    document.getElementById('folder-corso').addEventListener('click', () => {
+      window.location.href = '/corso-tecnologico/index.html';
+    });
+    document.getElementById('folder-social').addEventListener('click', () => {
+      window.location.href = '/social/index.html';
+    });
+    document.getElementById('messages').addEventListener('click', () => {
+      window.location.href = '/messages/index.html';
+    });
+    document.getElementById('folder-info').addEventListener('click', () => {
+      window.location.href = '/info/index.html';
+    });
+    document.getElementById('folder-supporto').addEventListener('click', () => {
+      window.location.href = '/supporto/index.html';
+    });
+    document.getElementById('folder-lista').addEventListener('click', () => {
+      window.location.href = '/lista-dattesa/index.html';
+    });
+    document.getElementById('folder-discord').addEventListener('click', () => {
+      window.location.href = 'https://discord.gg/YOUR_SERVER_INVITE'; // Replace with actual Discord invite URL
+    });
+    document.getElementById('folder-video').addEventListener('click', () => {
+      window.location.href = '/video/index.html';
+    });
+
+    // Cookie consent logic
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('accept-cookies');
+
+    function hasAcceptedCookies() {
+      return localStorage.getItem('cookieAccepted') === 'yes';
+    }
+
+    function showCookieBanner() {
+      cookieBanner.style.display = 'flex';
+    }
+
+    function hideCookieBanner() {
+      cookieBanner.style.display = 'none';
+    }
+
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookieAccepted', 'yes');
+      hideCookieBanner();
+    });
+
+    window.addEventListener('load', () => {
+      if (!hasAcceptedCookies()) {
+        showCookieBanner();
+      }
+    });
+  </script>
+</body>
+</html>
+
+
